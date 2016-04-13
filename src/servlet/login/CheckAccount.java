@@ -35,7 +35,7 @@ public class CheckAccount extends HttpServlet {
 			String username=request.getParameter("username");
 			DBAcess db=new DBAcess();//实例化数据库连接类
 			Connection conn=db.getConn();//获取连接
-			String sql="select password from USER where user=?";//设置预查询语句
+			String sql="select password from user where username=?";//设置预查询语句
 			PreparedStatement prstmt=null;
 			String rightpwd="";
 			try{
@@ -52,15 +52,18 @@ public class CheckAccount extends HttpServlet {
 			}
 			
 			if(!pwd.isEmpty()&&rightpwd.equals(pwd)){//防止出现不输密码而密码正好不存在的情况
-				try{
-					request.getRequestDispatcher("jsp/logSuccess.jsp").forward(request, response);
-				}catch(ServletException e){
-					e.printStackTrace();
-				}
+				System.out.println("password is right!");
+				response.getWriter().write("true");
 			}
 			else{
+				if(rightpwd==""){
+					System.out.println("not exists!");
+					response.getWriter().write("none");
+				}
+				else{
 				System.out.println("password is wrong!");
-				response.sendRedirect("");
+				response.getWriter().write("false");
+			}
 			}
 			db.closeConn();
 			

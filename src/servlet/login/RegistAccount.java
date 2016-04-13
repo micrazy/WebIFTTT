@@ -36,30 +36,13 @@ public class RegistAccount extends HttpServlet {
 		// TODO Auto-generated method stub
 		String pwd=request.getParameter("password");
 		String username=request.getParameter("username");
-		String rePWD=request.getParameter("repeatPWD");
-	//检测输入是否合法
-		if(username.isEmpty()){
-			System.out.println("Empty username!");
-			response.sendRedirect("");
-		}
-		if(pwd.isEmpty()){
-			System.out.println("Empty password!");
-			response.sendRedirect("");
-		}
-		if(rePWD.isEmpty()){
-			System.out.println("Empty repeatPWD!");
-			response.sendRedirect("");
-		}
-		if(!pwd.equals(rePWD)){
-			System.out.println("Different PWD");
-			response.sendRedirect("");
-		}
-		
-		
+	//	String rePWD=request.getParameter("repeatPWD");
+	
+
 		DBAcess db=new DBAcess();//实例化数据库连接类
 		Connection conn=db.getConn();//获取连接
-		String sql="select * from USER where user=?";//设置预查询语句
-		String sql1="insert into USER value(?,?,?,?)";
+		String sql="select * from user where username=?";//设置预查询语句
+		String sql1="insert into user value(?,?,?,?)";
 		PreparedStatement prstmt=null;
 		
 		try{
@@ -68,14 +51,15 @@ public class RegistAccount extends HttpServlet {
 			ResultSet rs=prstmt.executeQuery();//执行 （executeUpdate）
 			if(rs.next()){
 				System.out.println("existing name");
-				response.sendRedirect("");
+				response.setContentType("text/html");
+				response.getWriter().write("false");
 			}
 			else{
 				prstmt=conn.prepareStatement(sql1);
-				prstmt.setString(1, null);
-				prstmt.setString(2, username);
-				prstmt.setString(3, pwd);
-				prstmt.setString(4, "");
+				prstmt.setString(1, username);
+				prstmt.setString(2, pwd);
+				prstmt.setString(3, "1000");//1000的初始金额
+				prstmt.setString(4, "0");//初始等级1
 				int result=0;
 				result=prstmt.executeUpdate();
 				if(result==0){
@@ -84,7 +68,8 @@ public class RegistAccount extends HttpServlet {
 				}
 				else{
 					System.out.println("regist success!");
-					response.sendRedirect(request.getContextPath()+"/index.jsp");
+					response.setContentType("text/html");
+					response.getWriter().write("true");
 				}
 			}
 		}catch(SQLException e){

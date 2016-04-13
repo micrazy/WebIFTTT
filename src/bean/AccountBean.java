@@ -1,5 +1,6 @@
 package bean;
 
+
 public class AccountBean {
 	public String getUsername() {
 		return username;
@@ -13,6 +14,20 @@ public class AccountBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public int getBalance(){
+		return balance;
+	}
+	public void setBalance(int balance){
+		this.balance=balance;
+	}
+	public int getGrade(){
+		return grade;
+	}
+	public void setGrade(int grade){
+		this.grade=grade;
+	}
 	String username;
 	String password;
+	int balance;
+	int grade;
 }

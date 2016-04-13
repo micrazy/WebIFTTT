@@ -14,5 +14,11 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/apps/Eclipse For Java/mysql-connector-java-5.1.37/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/commons-codec.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/jackson-all-1.8.5.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="D:/class/JAVA/lab/weiboJDK/weibo2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
